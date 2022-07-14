@@ -1,0 +1,104 @@
+<h1 mat-dialog-title>იუზერის დამატება</h1>
+<div mat-dialog-content>
+  <form [formGroup]="userForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>პირადი ნომერი</mat-label>
+      <input formControlName="PrivateNumber" matInput placeholder="PrivateNumber">  
+      <mat-error *ngIf="userForm.controls['PrivateNumber'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+      <mat-error *ngIf="userForm.controls['PrivateNumber'].hasError('pattern') || 
+                        userForm.controls['PrivateNumber'].hasError('minlength') ||
+                        userForm.controls['PrivateNumber'].hasError('maxLength')">
+                        უნდა შედგებოდეს 11 ციფრისგან
+      </mat-error>     
+    </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label>სახელი</mat-label>
+      <input formControlName="FirstName" matInput placeholder="Name">
+      <mat-error *ngIf="userForm.controls['FirstName'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+    </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label>გვარი</mat-label>
+      <input formControlName="LastName" matInput placeholder="LastName">
+      <mat-error *ngIf="userForm.controls['FirstName'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+    </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+      <mat-label>პაროლი</mat-label>
+      <input formControlName="Password" matInput placeholder="Password" >
+      <mat-error *ngIf="userForm.value.Password">უნდა იყოს პატარა, დიდი ასობგერა, ციფრი ,6 სიმბოლო</mat-error>
+
+    </mat-form-field>
+
+  <!-- <mat-form-field appearance="outline">
+      <mat-label>გამეორება</mat-label>
+      <input formControlName="Confirmpassword" matInput placeholder="ConfirmPassword" pattern="{{userForm.value.Password}}">
+      <mat-error *ngIf="userForm.value.ConfirmPassword">Passwords do not match.</mat-error>
+    </mat-form-field> -->
+
+  <mat-form-field appearance="outline">
+      <mat-label>ტელ:</mat-label>
+      <input formControlName="Phone" matInput placeholder="Phone">
+      <mat-error *ngIf="userForm.controls['Phone'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+      <mat-error *ngIf="userForm.controls['Phone'].hasError('pattern') || 
+                        userForm.controls['Phone'].hasError('maxLength')">
+                        უნდა შედგებოდეს ციფრისგან
+      </mat-error>
+    </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label>მეილი</mat-label>
+      <input formControlName="Email" matInput placeholder="email">
+      <mat-error *ngIf="userForm.controls['Email'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+      <mat-error *ngIf="userForm.controls['Email'].hasError('email') ">უნდა იყოს მეილი</mat-error> 
+    </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label>დაბადების თარიღი</mat-label>
+      <input formControlName="Birthdate" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="userForm.controls['Birthdate'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+    </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label>მისამართი</mat-label>
+      <input formControlName="Address" matInput placeholder="Address">
+      <mat-error *ngIf="userForm.controls['Address'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+    </mat-form-field>
+
+  <label for="" ><H1>სქესი</H1></label>
+  <mat-radio-group formControlName="genderType" class="example-radio-group">
+      <mat-radio-button class="example-radio-group" *ngFor="let gender of GenderList" [value]="gender">
+          {{gender}}
+      </mat-radio-button>
+      <mat-error *ngIf="userForm.controls['genderType'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+    </mat-radio-group>
+
+    <label for="" ><H1>როლი</H1></label>
+  <mat-radio-group formControlName="RoleType" class="example-radio-group">
+      <mat-radio-button class="example-radio-group" *ngFor="let role of RoleList" [value]="role">
+         <span>{{role}} </span> 
+      </mat-radio-button>
+      <mat-error *ngIf="userForm.controls['RoleType'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+    </mat-radio-group>
+
+  <mat-form-field appearance="outline">
+      <mat-label>ქვეყანა</mat-label>
+      <mat-select formControlName="CountryId"  placeholder="Country">
+        <mat-option *ngFor="let item of  countryList$|async" value="{{item.id}}">{{item.name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="userForm.controls['CountryId'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+    </mat-form-field>
+
+  </form>
+    
+
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warm" mat-dialog-close>დახურვა</button>
+  <button [disabled]="!userForm.valid" style="margin-left: 8px ;" mat-raised-button color="primary" (click)="addUser()">{{actionbtn}}</button>
+</div>
+

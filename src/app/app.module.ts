@@ -21,12 +21,14 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { CountryComponent } from './country/country.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    DialogComponent
+    DialogComponent,
+    CountryComponent
   ],
   imports: [
     BrowserModule,

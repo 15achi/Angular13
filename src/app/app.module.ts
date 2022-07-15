@@ -49,7 +49,8 @@ import { CountryComponent } from './country/country.component';
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatInputModule
     
 
   ],

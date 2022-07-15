@@ -1,10 +1,11 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { MatDialogRef ,MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ApiService } from '../services/api.service';
 import { Observable, Subscription } from 'rxjs';
 import { User } from '../interface/user';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -15,6 +16,8 @@ import { User } from '../interface/user';
 })
 export class DialogComponent implements OnInit {
 
+
+  disabled:boolean =true;
   GenderList=['Male','Female'];
   RoleList=['User','Admin'];
   countryList = [];
@@ -62,6 +65,8 @@ export class DialogComponent implements OnInit {
     if(this.editData){
       this.actionbtn="რედაქტირება";
 
+      this.disabled=false;
+
       this.userForm.controls['PrivateNumber'].setValue(this.editData.privateNumber);
       this.userForm.controls['FirstName'].setValue(this.editData.firstName);
       this.userForm.controls['LastName'].setValue(this.editData.lastName);
@@ -90,18 +95,19 @@ export class DialogComponent implements OnInit {
  // const findCherries = () => { 
  //   return this.AllUsers.privateNumber === '12345678915';
 
-  addUser(){
+  onCreateUser(){
+    this.disabled=true;
     if(!this.editData){
     if(this.userForm.valid){
-      this.api.PostUser(this.userForm.value)
+      this.api.CreateUser(this.userForm.value)
       .subscribe({
         next:(res)=>{
           alert(" added successfully");
           this.userForm.reset();
           this.dialogRef.close('save');
            },
-           error:(err)=>{        
-             alert("Errpr ")
+           error:(err:any)=>{        
+             alert(err);
  
           }
         })
@@ -112,6 +118,7 @@ export class DialogComponent implements OnInit {
   }
 
   updateUser(){
+   // this.disabled=false;
     this.api.updateUser(this.userForm.value)
              .subscribe({
               next :(res)=>{

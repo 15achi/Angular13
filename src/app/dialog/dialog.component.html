@@ -2,9 +2,9 @@
 <div mat-dialog-content>
   <form [formGroup]="userForm">
 
-    <mat-form-field appearance="outline">
+    <mat-form-field *ngIf="disabled" appearance="outline">
       <mat-label>პირადი ნომერი</mat-label>
-      <input formControlName="PrivateNumber" matInput placeholder="PrivateNumber">  
+      <input matInput    formControlName="PrivateNumber"  placeholder="PrivateNumber">  
       <mat-error *ngIf="userForm.controls['PrivateNumber'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
       <mat-error *ngIf="userForm.controls['PrivateNumber'].hasError('pattern') || 
                         userForm.controls['PrivateNumber'].hasError('minlength') ||
@@ -99,6 +99,6 @@
 </div>
 <div mat-dialog-action [align]="'end'">
   <button mat-raised-button color="warm" mat-dialog-close>დახურვა</button>
-  <button [disabled]="!userForm.valid" style="margin-left: 8px ;" mat-raised-button color="primary" (click)="addUser()">{{actionbtn}}</button>
+  <button [disabled]="!userForm.valid" style="margin-left: 8px ;" mat-raised-button color="primary" (click)="onCreateUser()">{{actionbtn}}</button>
 </div>
 

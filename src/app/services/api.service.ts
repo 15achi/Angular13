@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { CreateUser } from '../interface/create-user';
 import { User } from '../interface/user';
 
 @Injectable({
@@ -9,35 +11,40 @@ import { User } from '../interface/user';
 })
 export class ApiService {
 
-  readonly UserAPIUrl="https://localhost:7249/api";
-  readonly countryAPIUrl="https://localhost:7249/api";
+  private APIUrl=environment.APIUrl;
+ 
 
   constructor( private http:HttpClient) { }
 
-  PostUser(data:any){
-    return this.http.post<any>(this.UserAPIUrl+'/User/',data)
+ 
+
+  getUsers():Observable<User[]>{
+    let myParams=new HttpParams({fromString:'PageNamber=1&PageSize=1000'})
+
+    return this.http.get<User[]>(this.APIUrl+'/User/GetUsers',{params:myParams})
+    
   }
 
-  getUsers(){
-    return this.http.get<any>(this.UserAPIUrl+'/User/GetUsers?PageNamber=1&PageSize=1000');
+  CreateUser(User:CreateUser){
+    return this.http.post<User>(this.APIUrl+'/User/',User)
   }
 
-  getCountryList():Observable<any[]>{
-    return this.http.get<any>(this.countryAPIUrl+'/Country/GetCountries?PageNamber=1&PageSize=1000');
-  }
-
-  updateUser(data:any){
-    return this.http.put(this.UserAPIUrl+'/User/',data);
+  updateUser(User:CreateUser){
+    return this.http.put<User>(this.APIUrl+'/User/',User);
   }
 
   deleteUser(privatename:string){
-    return this.http.delete(this.UserAPIUrl+`/User/${privatename}`);
+    return this.http.delete(this.APIUrl+`/User/${privatename}`);
+  }
+
+  getCountryList():Observable<any[]>{
+    let myParams=new HttpParams({fromString:'PageNamber=1&PageSize=1000'})
+
+    return this.http.get<any>(this.APIUrl+'/Country/GetCountries',{params:myParams});
   }
 
   AllUsers():Observable<User[]>{
-    return this.http.get<User[]>(this.UserAPIUrl+'/User/GetUsers?PageNamber=1&PageSize=1000');
+    return this.http.get<User[]>(this.APIUrl+'/User/GetUsers?PageNamber=1&PageSize=1000');
   }
-  // AllUsers(){
-  //   return this.http.get<any>(this.UserAPIUrl+'/User/GetUsers?PageNamber=1&PageSize=1000');
-  // }
+
 }

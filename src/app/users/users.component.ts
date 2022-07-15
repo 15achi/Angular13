@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Observable } from 'rxjs';
+import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-users',
@@ -47,13 +48,13 @@ export class UsersComponent implements OnInit {
     this.api.getUsers()
     .subscribe({
       next:(res)=>{
-      //console.log(res);
+      console.log(res);
         this.dataSource=new MatTableDataSource(res);
         this.dataSource.paginator=this.paginator;
         this.dataSource.sort=this.sort
       },
-      error:(err)=>{
-        alert("Error");
+      error:(err:any)=>{
+        alert(err);
       }
       
     })

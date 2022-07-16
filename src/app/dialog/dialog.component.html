@@ -32,12 +32,6 @@
 
     </mat-form-field>
 
-  <!-- <mat-form-field appearance="outline">
-      <mat-label>გამეორება</mat-label>
-      <input formControlName="Confirmpassword" matInput placeholder="ConfirmPassword" pattern="{{userForm.value.Password}}">
-      <mat-error *ngIf="userForm.value.ConfirmPassword">Passwords do not match.</mat-error>
-    </mat-form-field> -->
-
   <mat-form-field appearance="outline">
       <mat-label>ტელ:</mat-label>
       <input formControlName="Phone" matInput placeholder="Phone">
@@ -95,10 +89,10 @@
 
   </form>
     
-
 </div>
 <div mat-dialog-action [align]="'end'">
   <button mat-raised-button color="warm" mat-dialog-close>დახურვა</button>
-  <button [disabled]="!userForm.valid" style="margin-left: 8px ;" mat-raised-button color="primary" (click)="onCreateUser()">{{actionbtn}}</button>
+  <button [disabled]="!userForm.valid" style="margin-left: 8px ;" mat-raised-button color="primary"
+   (click)="onCreateUser()">{{actionbtn}}</button>
 </div>
 

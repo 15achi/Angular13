@@ -30,7 +30,6 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.getAllUsers();
     this.AllUsers=this.getAllUsers();
-    //console.log(this.getAllUsers());
   }
 
   openDialog() {

@@ -23,7 +23,7 @@ export class DialogComponent implements OnInit {
   countryList = [];
   countryList$!:Observable<any[]>;
   actionbtn:string="დამატება";
- Users:any=[];
+  Users:any=[];
 
   userForm !:FormGroup;
   constructor(private formBuilder:FormBuilder,
@@ -85,15 +85,11 @@ export class DialogComponent implements OnInit {
   onGetUsers():void{
     this.api.AllUsers().subscribe(
      (response :User[])=>this.Users=response,
-     // (response :User[])=>console.log(response),
-      
       (error:any)=>console.log(error),
       ()=>console.log('response')
     )
   }
 
- // const findCherries = () => { 
- //   return this.AllUsers.privateNumber === '12345678915';
 
   onCreateUser(){
     this.disabled=true;
@@ -106,7 +102,7 @@ export class DialogComponent implements OnInit {
           this.userForm.reset();
           this.dialogRef.close('save');
            },
-           error:(err:any)=>{        
+           error:(err)=>{        
              alert(err);
  
           }
@@ -118,7 +114,6 @@ export class DialogComponent implements OnInit {
   }
 
   updateUser(){
-   // this.disabled=false;
     this.api.updateUser(this.userForm.value)
              .subscribe({
               next :(res)=>{

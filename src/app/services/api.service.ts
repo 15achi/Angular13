@@ -1,7 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CreateUser } from '../interface/create-user';
 import { User } from '../interface/user';
@@ -27,9 +27,17 @@ export class ApiService {
 
   CreateUser(User:CreateUser){
     return this.http.post<User>(this.APIUrl+'/User/',User)
+    .pipe(
+      catchError(this.handleError)
+    )
   }
 
-  updateUser(User:CreateUser){
+  private handleError(error:HttpErrorResponse):Observable<never>{
+    return throwError(error.ok);
+  }
+
+
+  updateUser(User:CreateUser): Observable<User>{
     return this.http.put<User>(this.APIUrl+'/User/',User);
   }
 

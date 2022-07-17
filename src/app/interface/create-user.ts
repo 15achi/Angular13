@@ -1,13 +1,7 @@
-export interface CreateUser {
-  privateNumber: string
-  firstName: string
-  lastName: string
+import { User } from "./user"
+
+export interface CreateUser extends User{
   password: string
-  phone: string
-  email: string
-  birthDate: string
-  address: string
-  genderType: string
-  roleType: string
-  countryId: number
 }
+
+

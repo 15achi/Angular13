@@ -33,7 +33,7 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
 
-   this.onGetUsers();
+  //  this.onGetUsers();
 
    console.log(this.Users);
 
@@ -82,13 +82,13 @@ export class DialogComponent implements OnInit {
     }
   }
 
-  onGetUsers():void{
-    this.api.AllUsers().subscribe(
-     (response :User[])=>this.Users=response,
-      (error:any)=>console.log(error),
-      ()=>console.log('response')
-    )
-  }
+  // onGetUsers():void{
+  //   this.api.AllUsers().subscribe(
+  //    (response :User[])=>this.Users=response,
+  //     (error:any)=>console.log(error),
+  //     ()=>console.log('response')
+  //   )
+  // }
 
 
   onCreateUser(){

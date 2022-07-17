@@ -22,13 +22,15 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { CountryComponent } from './country/country.component';
+import { DialogCountryComponent } from './dialog-country/dialog-country.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     DialogComponent,
-    CountryComponent
+    CountryComponent,
+    DialogCountryComponent
   ],
   imports: [
     BrowserModule,

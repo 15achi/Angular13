@@ -1,0 +1,24 @@
+
+
+  <div class="container" >
+    <form [formGroup]="Login"  style="width: 30%;margin:auto">
+        <mat-form-field appearance="standard">
+            <mat-label>პირადი ნომერი</mat-label>
+            <input matInput length="" inputmode="" placeholder="privateNumber" formControlName="privateNumber" #nameInput>
+            <mat-error *ngIf="Login.controls['privateNumber'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+        </mat-form-field>
+
+          <mat-form-field appearance="standard">
+              <mat-label>password</mat-label>
+              <input matInput maxlength="" inputmode="" placeholder="password" formControlName="password" #nameInput>
+              <mat-error *ngIf="Login.controls['password'].hasError('required') ">არ უნდა იყოს ცარიელი</mat-error>
+          </mat-form-field>
+
+    
+        <div mat-dialog-actions [align]="'end'"  style="margin-top: 10px;">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!Login.valid"
+              (click)="ProceedLogin()">გაგზავნა
+            </button>
+        </div>
+    </form>
+</div>

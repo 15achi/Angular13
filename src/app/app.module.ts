@@ -17,12 +17,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { CountryComponent } from './country/country.component';
 import { DialogCountryComponent } from './dialog-country/dialog-country.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { DialogCountryComponent } from './dialog-country/dialog-country.componen
     UsersComponent,
     DialogComponent,
     CountryComponent,
-    DialogCountryComponent
+    DialogCountryComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,7 @@ import { DialogCountryComponent } from './dialog-country/dialog-country.componen
     
 
   ],
-  providers: [],
+  providers: [],// {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

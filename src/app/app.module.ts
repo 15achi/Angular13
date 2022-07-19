@@ -25,6 +25,8 @@ import { CountryComponent } from './country/country.component';
 import { DialogCountryComponent } from './dialog-country/dialog-country.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { CookieService } from 'ngx-cookie-service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { HomeComponent } from './home/home.component';
     
 
   ],
-  providers: [],// {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
+  providers: [CookieService,{provide:HTTP_INTERCEPTORS,useClass:
+  TokenInterceptorService,multi:true}],// {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

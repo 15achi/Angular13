@@ -17,8 +17,10 @@ export class AppComponent implements DoCheck {
   currentrole:any;
   constructor(private cookie:CookieService,private route:Router,private service:AuthService,
     private userservice:UserService){
+     
 
   }
+
 
   ngDoCheck(): void {
     if (this.route.url == '/login') {

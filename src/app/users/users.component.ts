@@ -8,6 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Dialog } from '@angular/cdk/dialog';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -26,8 +27,9 @@ export class UsersComponent implements OnInit {
   AllUsers:any=[];
 
   display=false;
-  constructor(private dialog:MatDialog, private api:ApiService,
+  constructor(private dialog:MatDialog, private api:ApiService,private route:Router,
     private userservice:UserService) {
+
      }
 
 

@@ -11,6 +11,7 @@ import { RoleGuard } from './shared/role.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   //{component:HomeComponent,path:"home",canActivate:[RoleGuard]},
+  
   {component:UsersComponent,path:"users",canActivate:[RoleGuard]},
   {component:CountryComponent,path:"country",canActivate:[RoleGuard]},
   {path:"login",component:LoginComponent}

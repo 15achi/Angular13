@@ -12,10 +12,6 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   Login: FormGroup = new FormGroup({});
-  messageclass='';
-  message='';
-  cusromerid:any;
-  editdata:any;
   responsedata:any;
 
   constructor(private service:AuthService,
@@ -25,13 +21,6 @@ export class LoginComponent implements OnInit {
               private http:HttpClient) { 
     localStorage.clear();
   }
-
-
-  // Login=new FormGroup({
-  //   privateNumber:new FormControl("",Validators.required),
-  //   password:new FormControl("",Validators.required)
-  // })
-
 
 
   ngOnInit(): void {

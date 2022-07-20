@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, Input, OnInit,ViewChild } from '@angular/core';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ApiService } from '../services/api.service';
@@ -7,6 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Dialog } from '@angular/cdk/dialog';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -24,12 +25,17 @@ export class UsersComponent implements OnInit {
 
   AllUsers:any=[];
 
+  display=false;
+  constructor(private dialog:MatDialog, private api:ApiService,
+    private userservice:UserService) {
+     }
 
-  constructor(private dialog:MatDialog, private api:ApiService) { }
+
 
   ngOnInit(): void {
     this.getAllUsers();
     this.AllUsers=this.getAllUsers();
+    this.display=this.userservice.isdisplayUser();
   }
 
   openDialog() {

@@ -9,7 +9,7 @@
     />
     <!-- <a routerLink="" style="color: #fff;">home</a> -->
     <a routerLink="users" style="color: #fff;">იუზერები</a>
-    <a routerLink="country" style="color: #fff;">ქვეყნები</a>
+    <a  *ngIf="displayuser" routerLink="country" style="color: #fff;">ქვეყნები</a>
     <!-- <a routerLink="" style="color: #fff;"></a> -->
       <div class="spacer"></div>
       <a routerLink="login" style="float: right;color: #fff;">Logout</a>

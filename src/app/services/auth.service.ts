@@ -9,9 +9,12 @@ import { ApiService } from './api.service';
 })
 export class AuthService {
   private APIUrl=environment.APIUrl;
+  tokenresp:any;
+  GetRole:string='';
   
 
-  constructor(  private http:HttpClient, private api:ApiService, private route:Router) { }
+  constructor(  private http:HttpClient, private api:ApiService, private route:Router) {
+  }
 
   ProceedLogin(usercred:any){
     return this.http.post(this.APIUrl+'/Authorization/login',usercred)
@@ -28,7 +31,7 @@ export class AuthService {
    }
  
    GetToken(){
-     return localStorage.getItem("token")||'';
+     return localStorage.getItem('token')||'';
    }
  
    GetRefreshToken(){
@@ -51,17 +54,25 @@ export class AuthService {
   
   }
 
-  HaveAccess(){
-    var loggintoken=localStorage.getItem('token')||'';
-    var _extractedtoken=loggintoken.split('.')[1];
-    var _atobdata=atob(_extractedtoken);
-    var _finaldata=JSON.parse(_atobdata);
-    if(_finaldata.role==="Admin"){
-      return true;
-    }
-   // alert('you not having access');
-    console.log(_finaldata);
-    return false;
-   // console.log(_finaldata);
+  GetRoleByToken(token:any){
+    let _token=token.split('.')[1];
+    this.tokenresp=JSON.parse(atob(_token))
+   // console.log(this.tokenresp.role);
+    return this.tokenresp.role;
   }
+
+  // HaveAccess(){
+  //   var loggintoken=localStorage.getItem('token')||'';
+  //   var _extractedtoken=loggintoken.split('.')[1];
+  //   var _atobdata=atob(_extractedtoken);
+  //   var _finaldata=JSON.parse(_atobdata);
+  //   if(_finaldata.Role=="Admin"){
+  //    // console.log(_finaldata.Role);
+  //     return true;
+  //   }
+  //  // alert('you not having access');
+  //   console.log(_finaldata.Role);
+  //   return false;
+  //  // console.log(_finaldata);
+  // }
 }

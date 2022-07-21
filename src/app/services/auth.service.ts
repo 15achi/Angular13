@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
+import { catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,12 @@ export class AuthService {
 
   ProceedLogin(usercred:any){
     return this.http.post(this.APIUrl+'/Authorization/login',usercred)
+    .pipe(
+      catchError((error:any)=>{
+        alert(error.error[Object.keys(error.error)[0]]);
+        return ""
+      })
+    )
   }
 
   GenerateRefreshToken(){
@@ -61,18 +68,4 @@ export class AuthService {
     return this.tokenresp.role;
   }
 
-  // HaveAccess(){
-  //   var loggintoken=localStorage.getItem('token')||'';
-  //   var _extractedtoken=loggintoken.split('.')[1];
-  //   var _atobdata=atob(_extractedtoken);
-  //   var _finaldata=JSON.parse(_atobdata);
-  //   if(_finaldata.Role=="Admin"){
-  //    // console.log(_finaldata.Role);
-  //     return true;
-  //   }
-  //  // alert('you not having access');
-  //   console.log(_finaldata.Role);
-  //   return false;
-  //  // console.log(_finaldata);
-  // }
 }

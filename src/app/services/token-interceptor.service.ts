@@ -25,12 +25,7 @@ export class TokenInterceptorService implements HttpInterceptor{
      
       })
     )
-    // let jwtToken=req.clone({
-    //   setHeaders:{
-    //     Authorization:'bearer '+authservice.GetToken()
-    //   }
-    // });
-    // return next.handle(jwtToken);
+
   }
 
  AddTokenheader(req: HttpRequest<any>,token:any){

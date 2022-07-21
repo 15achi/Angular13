@@ -3,7 +3,7 @@
       <mat-icon>superviser_user_circle</mat-icon>
     </button>
     <span class="example-spacer" style="margin: auto;">ქვეყნები</span>
-    <button mat-raised-button class="warn"  (click)="openDialog()">
+    <button *ngIf="display" mat-raised-button class="warn"  (click)="openDialog()">
       დამატება
     </button>
   </mat-toolbar>
@@ -35,7 +35,7 @@
              <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> action </th>
                 <td mat-cell *matCellDef="let row"> 
-                  <button (click)="deleteUser(row.name)" mat-icon-button color="primary">
+                  <button *ngIf="display" (click)="deleteUser(row.name)" mat-icon-button color="primary">
                     <mat-icon>delete</mat-icon>
                   </button>                 
                 </td>

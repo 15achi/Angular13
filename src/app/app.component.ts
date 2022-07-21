@@ -17,9 +17,12 @@ export class AppComponent implements DoCheck {
   currentrole:any;
   constructor(private cookie:CookieService,private route:Router,private service:AuthService,
     private userservice:UserService){
-     
 
   }
+
+  refreshComponent(){
+    this.route.navigate(['/users'])
+ }
 
 
   ngDoCheck(): void {
@@ -31,6 +34,9 @@ export class AppComponent implements DoCheck {
   }
 
   ngOnInit():void{
+    this.userservice.update.subscribe(res=>{
+      this.MenuDisplay();
+    });
     this.MenuDisplay();
 
   }

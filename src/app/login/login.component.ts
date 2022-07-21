@@ -4,6 +4,7 @@ import { FormGroup,FormControl,Validators, FormBuilder } from '@angular/forms';
 import{Router} from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private service:AuthService,
               private route:Router,
               private api:ApiService,
+              private userservice:UserService,
               private formBuilder: FormBuilder,
               private http:HttpClient) { 
     localStorage.clear();
@@ -39,7 +41,8 @@ export class LoginComponent implements OnInit {
             this.responsedata=result;
             localStorage.setItem('token',this.responsedata.jwtToken)
             localStorage.setItem('refreshtoken',this.responsedata.refreshToken)
-            this.route.navigate(['users']);
+            this.userservice.update.next();
+            this.route.navigate(['/users']);
           }
         })
 
